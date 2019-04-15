@@ -1,0 +1,23 @@
+Understanding process.nextTick()
+********************************
+1.You can imagine this event loop to be a queue of callbacks that are processed by Node on every tick of the event loop.
+  Node is a great fit for I/O bound tasks, and definitely not for CPU intensive tasks.
+  
+example:-
+--------
+function foo() {
+    console.error('foo');
+}
+
+process.nextTick(foo);
+console.error('bar');
+
+2.you can get the same result by using setTimeout() this way:
+
+setTimeout(foo, 0);
+console.log('bar');
+
+3.nextTick() is not just alias to setTimout(fn,0) - it's far more efficient.
+  The function that called nextTick has to return, as well as its parent, all the way up to the root of the stack. 
+  Then when the event loop is looking for a new event to execute, your nextTick'ed function will be there in the event queue 
+  and execute on a whole new stack.
