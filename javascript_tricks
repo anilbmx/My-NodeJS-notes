@@ -1,0 +1,33 @@
+var greet = 'Hello World';
+var toGreet = [].filter.call(greet,function(ele,index){
+        return index>5;
+})
+console.log(toGreet)
+**************************************************************************************************
+
+let a = 1;
+let b = setInterval(()=>{
+        console.log(a);
+        a++;
+        if(a>=5){
+                clearInterval(b)
+        }
+},1000)
+
+**************************************************************************************************
+
+var a = 1;
+(function(){
+        console.log(a);
+        a = 2;
+        console.log(a);
+})()
+
+**************************************************************************************************
+
+var a = 1;
+(function(){
+        console.log(a);
+        var a = 2;
+        console.log(a);
+})()
